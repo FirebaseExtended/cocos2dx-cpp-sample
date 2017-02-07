@@ -22,7 +22,6 @@
 #include "platform/android/jni/JniHelper.h"
 #endif
 
-#include "FirebaseAdMobScene.h"
 #include "FirebaseCocos.h"
 
 USING_NS_CC;
@@ -54,19 +53,16 @@ cocos2d::ui::Text* logTextWidget;
 /// The log text.
 std::string logTextString;
 
-/// Creates the Firebase scene.
-Scene* FirebaseScene::createScene() {
-  return FirebaseAdMobScene::createScene();
-}
-
-cocos2d::ui::Button* FirebaseScene::createButton(bool btnEnabled,
-                                                 std::string btnTitleText) {
+cocos2d::ui::Button* FirebaseScene::createButton(
+    bool buttonEnabled, const std::string& buttonTitleText,
+    const cocos2d::Color3B& buttonColor) {
   auto visibleSize = Director::getInstance()->getVisibleSize();
   cocos2d::Vec2 origin = Director::getInstance()->getVisibleOrigin();
   cocos2d::ui::Button* button = cocos2d::ui::Button::create(
       kNormalButtonImage, kSelectedButtonImage, kDisabledButtonImage);
-  button->setEnabled(btnEnabled);
-  button->setTitleText(btnTitleText);
+  button->setEnabled(buttonEnabled);
+  button->setColor(buttonColor);
+  button->setTitleText(buttonTitleText);
   button->setTitleFontSize(kButtonTitleFontSize);
   button->ignoreContentAdaptWithSize(false);
   button->setContentSize(kButtonContentSize);
@@ -75,6 +71,11 @@ cocos2d::ui::Button* FirebaseScene::createButton(bool btnEnabled,
       cocos2d::Vec2(origin.x + visibleSize.width / 4, nextYPosition));
 
   return button;
+}
+
+cocos2d::ui::Button* FirebaseScene::createButton(
+    bool buttonEnabled, const std::string& buttonTitleText) {
+  return createButton(buttonEnabled, buttonTitleText, cocos2d::Color3B::WHITE);
 }
 
 void FirebaseScene::createScrollView(float yPosition) {

@@ -29,7 +29,7 @@ import zipfile
 # The setup_firebase_sample.py script directory.
 ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 # The Firebase SDK download URL.
-FIREBASE_SDK_URL = "https://dl.google.com/firebase/sdk/cpp/firebase_cpp_sdk_2.0.0.zip"
+FIREBASE_SDK_URL = "https://dl.google.com/firebase/sdk/cpp/firebase_cpp_sdk_2.1.2.zip"
 # The cocos2d-x GitHub release download URL.
 COCOS2DX_GITHUB_URL = "https://github.com/cocos2d/cocos2d-x/archive/cocos2d-x-3.13.1.zip"
 # The iOS project directory.
@@ -48,7 +48,7 @@ LIBS_DIR = os.path.join(ROOT_DIRECTORY, "sample_project/Libs")
 # The Firebase features passed by the caller of this script.
 FEATURE_ARGS_ARRAY = []
 # The Firebase features supported by this script.
-FIREBASE_FEATURES_ARRAY = ["AdMob"]
+FIREBASE_FEATURES_ARRAY = ["AdMob", "Analytics"]
 
 
 def add_cocos2dx_library():

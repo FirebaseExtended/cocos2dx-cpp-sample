@@ -23,6 +23,7 @@
 #endif
 
 #include "FirebaseCocos.h"
+#include "firebase/admob.h"
 
 USING_NS_CC;
 
@@ -78,10 +79,13 @@ const char* kAdMobAppID = "ca-app-pub-3940256099942544~1458002511";
 const char* kAdViewAdUnit = "ca-app-pub-3940256099942544/6300978111";
 const char* kInterstitialAdUnit = "ca-app-pub-3940256099942544/1033173712";
 const char* kRewardedVideoAdUnit = "YOUR_AD_UNIT_ID";
-#endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 const char* kAdViewAdUnit = "ca-app-pub-3940256099942544/2934735716";
 const char* kInterstitialAdUnit = "ca-app-pub-3940256099942544/4411468910";
+const char* kRewardedVideoAdUnit = "YOUR_AD_UNIT_ID";
+#else
+const char* kAdViewAdUnit = "";
+const char* kInterstitialAdUnit = "";
 const char* kRewardedVideoAdUnit = "YOUR_AD_UNIT_ID";
 #endif
 
@@ -254,6 +258,11 @@ static void onRewardedVideoLoadAdCompletionCallback(
   }
 }
 
+/// Creates the Firebase scene.
+Scene* CreateFirebaseScene() {
+  return FirebaseAdMobScene::createScene();
+}
+
 /// Creates the FirebaseAdMobScene.
 Scene* FirebaseAdMobScene::createScene() {
   // Create the scene.
@@ -277,12 +286,9 @@ bool FirebaseAdMobScene::init() {
   auto visibleSize = Director::getInstance()->getVisibleSize();
   cocos2d::Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-// Intitialize Firebase-AdMob.
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || \
-     CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  // Intitialize Firebase-AdMob.
   CCLOG("Initializing the AdMob with Firebase API.");
   firebase::admob::Initialize(*firebase::App::GetInstance(), kAdMobAppID);
-#endif
 
   // Create the AdMob ad listener classes.
   adViewListener = new LoggingAdViewListener(this);
