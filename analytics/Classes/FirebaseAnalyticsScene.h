@@ -25,6 +25,12 @@ class FirebaseAnalyticsScene : public FirebaseScene {
  public:
   static cocos2d::Scene *createScene();
 
+  FirebaseAnalyticsScene() :
+      blue_button_click_count_(0),
+      total_button_click_count_(0),
+      previous_button_clicked_("None"),
+      green_button_click_count_(0) {}
+
   bool init() override;
 
   void update(float delta) override;
@@ -34,16 +40,16 @@ class FirebaseAnalyticsScene : public FirebaseScene {
   CREATE_FUNC(FirebaseAnalyticsScene);
 
  private:
-  /// The button for loading an ad view.
+  /// A blue button that records how many times it has been clicked.
   cocos2d::ui::Button* blue_button_;
 
-  /// The button for showing and hiding the ad view.
+  /// A red button that records how many times any button has been clicked.
   cocos2d::ui::Button* red_button_;
 
-  /// The button for moving the ad view.
+  /// A yellow button that records what button was clicked previously.
   cocos2d::ui::Button* yellow_button_;
 
-  /// The button for loading an InterstitialAd.
+  /// A green button that records what ratio of button clicks were green.
   cocos2d::ui::Button* green_button_;
 
   // The following are some arbitrary statistics to collect to demonstrate how

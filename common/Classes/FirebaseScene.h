@@ -38,7 +38,7 @@ class FirebaseScene : public cocos2d::Layer {
   /// @param delta The number of seconds since the last update.
   virtual void update(float delta) = 0;
 
-  /// Called just before the app closes. This is where cleanup and shutdown 
+  /// Called just before the app closes. This is where cleanup and shutdown
   /// logic should go.
   virtual void menuCloseAppCallback(cocos2d::Ref* pSender) = 0;
 
@@ -60,7 +60,11 @@ class FirebaseScene : public cocos2d::Layer {
 
   /// Creates the ScrollView that contains a TextWidget for displaying log text
   /// to the user.
+  ///
+  /// By default the it will be half the width of the parent widget, but that
+  /// can be adjusted by supplying a width argument.
   void createScrollView(float yPosition);
+  void createScrollView(float yPosition, float widthFraction);
 };
 
 #endif  // FIREBASE_COCOS_CLASSES_FIREBASE_SCENE_H_

@@ -78,15 +78,16 @@ cocos2d::ui::Button* FirebaseScene::createButton(
   return createButton(buttonEnabled, buttonTitleText, cocos2d::Color3B::WHITE);
 }
 
-void FirebaseScene::createScrollView(float yPosition) {
+void FirebaseScene::createScrollView(float yPosition, float widthFraction) {
   cocos2d::Size visibleSize = Director::getInstance()->getVisibleSize();
   cocos2d::Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
   scrollView = cocos2d::ui::ScrollView::create();
-  auto scrollViewFrameSize = Size(visibleSize.width / 2, yPosition);
+  auto scrollViewFrameSize =
+    Size(visibleSize.width * (1 - widthFraction), yPosition);
   scrollView->setContentSize(scrollViewFrameSize);
   scrollView->setPosition(
-      cocos2d::Point(origin.x + visibleSize.width / 2, origin.y));
+      cocos2d::Point(origin.x + visibleSize.width * widthFraction, origin.y));
   cocos2d::Size scrollViewContainerSize =
       cocos2d::Size(scrollViewFrameSize.width, scrollViewFrameSize.height);
   scrollView->setInnerContainerSize(scrollViewContainerSize);
@@ -97,6 +98,10 @@ void FirebaseScene::createScrollView(float yPosition) {
   scrollView->addChild(logTextWidget);
 
   this->addChild(scrollView);
+}
+
+void FirebaseScene::createScrollView(float yPosition) {
+  createScrollView(yPosition, 0.5f);
 }
 
 /// Adds text to the log TextWidget.
@@ -135,11 +140,12 @@ void FirebaseScene::logMessage(std::string format, ...) {
           scrollView->setInnerContainerSize(newScrollViewContainerSize);
           scrollViewContainerSize = scrollView->getInnerContainerSize();
         }
-        logTextWidget->setPosition(
-            cocos2d::Point(scrollViewContainerSize.width -
-                               logTextWidget->getContentSize().width / 2,
-                           scrollViewContainerSize.height + kUIElementPadding -
-                               logTextWidget->getContentSize().height / 2));
+        logTextWidget->setPosition(cocos2d::Point(
+            scrollViewContainerSize.width -
+                logTextWidget->getContentSize().width / 2,
+            scrollViewContainerSize.height +
+                kUIElementPadding -
+                logTextWidget->getContentSize().height / 2));
         float scrollPercent = logTextWidget->getContentSize().height /
                               scrollViewContainerSize.height;
         scrollView->scrollToPercentVertical(scrollPercent * 100, 1.0, false);

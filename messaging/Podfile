@@ -1,0 +1,8 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '7.0'
+
+target 'HelloCpp-mobile' do
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+end

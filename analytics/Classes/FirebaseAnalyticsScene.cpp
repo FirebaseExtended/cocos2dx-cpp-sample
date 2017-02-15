@@ -72,11 +72,6 @@ bool FirebaseAnalyticsScene::init() {
     return false;
   }
 
-  blue_button_click_count_ = 0;
-  total_button_click_count_ = 0;
-  previous_button_clicked_ = "None";
-  green_button_click_count_ = 0;
-
   auto visibleSize = Director::getInstance()->getVisibleSize();
   cocos2d::Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
