@@ -18,7 +18,6 @@
 
 import argparse
 import fileinput
-import glob
 import logging
 import os
 import platform
@@ -49,7 +48,7 @@ LIBS_DIR = os.path.join(ROOT_DIRECTORY, "sample_project/Libs")
 # The Firebase features passed by the caller of this script.
 FEATURE_ARGS_ARRAY = []
 # The Firebase features supported by this script.
-FIREBASE_FEATURES_ARRAY = ["AdMob", "Analytics", "Messaging"]
+FIREBASE_FEATURES_ARRAY = ["AdMob", "Analytics", "Invites", "Messaging"]
 
 
 def add_cocos2dx_library():

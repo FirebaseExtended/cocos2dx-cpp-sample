@@ -149,7 +149,6 @@ bool FirebaseMessagingScene::init() {
   firebase::messaging::Initialize(*firebase::App::GetInstance(),
                                   new FirebaseMessagingSceneListener(this));
 
-
   // Create the close app menu item.
   auto closeAppItem = MenuItemImage::create(
       "CloseNormal.png", "CloseSelected.png",
