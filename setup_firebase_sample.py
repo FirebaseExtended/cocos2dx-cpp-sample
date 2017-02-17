@@ -1,20 +1,39 @@
 #!/usr/bin/python
 # coding=utf-8
+
+# Copyright 2017 Google Inc. All rights reserved.
 #
-# Sets up the Firebase cocos2d-x sample project.
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
 #
-# For help:
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
 #
-#   python setup_firebase_sample.py --help
-#
-# Run the script:
-#
-#   python setup_firebase_sample.py FIREBASE_FEATURE
-#
-# Where FIREBASE_FEATURE is one of the following:
-#
-#   AdMob, Analytics, Auth, Invites, Messaging, or Remote_Config
-#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+"""Sets up the Firebase cocos2d-x sample project.
+
+For help:
+
+  python setup_firebase_sample.py --help
+
+Run the script:
+
+  python setup_firebase_sample.py FIREBASE_FEATURE
+
+Where FIREBASE_FEATURE is one of the following:
+
+  AdMob, Analytics, Auth, Invites, Messaging, or Remote_Config
+"""
 
 import argparse
 import fileinput
@@ -246,7 +265,7 @@ def add_class_files():
   firebase_feature = FEATURE_ARGS_ARRAY[0].lower()
   common_classes_dir = os.path.join(ROOT_DIRECTORY, "common/Classes")
   third_party_classes_dir = os.path.join(ROOT_DIRECTORY,
-                                         "third_party/common/Classes")
+                                         "third_party/cocos2dx/common/Classes")
   feature_classes_dir = os.path.join(ROOT_DIRECTORY, firebase_feature,
                                      "Classes")
   dst_dir = os.path.join(ROOT_DIRECTORY, "sample_project/Classes")
