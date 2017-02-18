@@ -1,0 +1,32 @@
+core.workflow(
+    name = "default",
+    origin = piper.origin(),
+    destination = git.destination(
+        url = "sso://devrel/firebase/cocos2dx-cpp-sample",
+        fetch = "master",
+        push = "master",
+    ),
+    mode = "ITERATIVE",
+    authoring = authoring.whitelisted(
+        default = "Googler <noreply@google.com>",
+        whitelist = [
+            "amablue",
+            "tristane",
+        ],
+    ),
+    transformations = [
+        core.move("google3/third_party/firebase_cocos_samples", ""),
+    ],
+    origin_files = glob(
+        include = ["google3/third_party/firebase_cocos_samples/**"],
+        exclude = [
+            "google3/third_party/firebase_cocos_samples/BUILD",
+            "google3/third_party/firebase_cocos_samples/METADATA",
+            "google3/third_party/firebase_cocos_samples/OWNERS",
+        ],
+    ),
+    destination_files = glob(
+        ["**"],
+        exclude = [".gitignore"],
+    ),
+)
