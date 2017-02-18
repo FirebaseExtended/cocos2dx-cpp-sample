@@ -264,15 +264,16 @@ def add_class_files():
   """
   firebase_feature = FEATURE_ARGS_ARRAY[0].lower()
   common_classes_dir = os.path.join(ROOT_DIRECTORY, "common/Classes")
-  third_party_classes_dir = os.path.join(ROOT_DIRECTORY,
-                                         "third_party/cocos2dx/common/Classes")
+  third_party_classes_glob = os.path.join(
+      ROOT_DIRECTORY, "third_party/cocos2dx/common/Classes/*")
   feature_classes_dir = os.path.join(ROOT_DIRECTORY, firebase_feature,
                                      "Classes")
   dst_dir = os.path.join(ROOT_DIRECTORY, "sample_project/Classes")
   try:
     shutil.rmtree(dst_dir)
     shutil.copytree(common_classes_dir, dst_dir)
-    shutil.copytree(third_party_classes_dir, dst_dir)
+    for file in glob.glob(third_party_classes_glob):
+      shutil.copy(file, dst_dir)
     feature_classes_files = os.listdir(feature_classes_dir)
     for file_name in feature_classes_files:
       full_file_name = os.path.join(feature_classes_dir, file_name)
