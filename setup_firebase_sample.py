@@ -68,6 +68,9 @@ LIBS_DIR = os.path.join(ROOT_DIRECTORY, "sample_project/Libs")
 FEATURE_ARGS_ARRAY = []
 # The Firebase features supported by this script.
 FIREBASE_FEATURES_ARRAY = ["AdMob", "Analytics", "Invites", "Messaging"]
+# The path to the Firebase SDK to use. This is optional, if left blank the most
+# recent release will be downloaded and used.
+FIREBASE_SDK_PATH = None
 
 
 def add_cocos2dx_library():
@@ -118,7 +121,26 @@ def add_cocos2dx_library():
   logging.info("Finished adding the cocos2d-x library to the sample project.")
 
 
-def add_firebase_sdk():
+def copy_firebase_sdk():
+  """Copies the given version of the Firebase SDK to the sample project.
+
+  Raises:
+    IOError: An error occurred copying the sdk to the target directory.
+  """
+  logging.info("Copying the Firebase SDK...")
+  try:
+    shutil.copytree(FIREBASE_SDK_PATH, os.path.join(LIBS_DIR,
+                                                    "firebase_cpp_sdk"))
+  except IOError as e:
+    logging.exception("IOError: [Errno %d] %s: in %s", e.errno, e.strerror,
+                      sys._getframe().f_code.co_name)
+    exit()
+  logging.info(
+      "Finished copying the Firebase SDK to the sample project's Libs "
+      "directory")
+
+
+def retrieve_latest_firebase_sdk():
   """Adds the latest version of the Firebase SDK to the sample project.
 
   Raises:
@@ -341,12 +363,23 @@ def check_valid_arguments():
       nargs=1,
       help="The Firebase feature must be one of the following: "
       "AdMob, Analytics, Auth, Invites, Messaging, or Remote_Config")
+  parser.add_argument(
+      "--firebase_sdk",
+      action='store',
+      const=None,
+      metavar="FIREBASE_SDK",
+      help="The path to the directory containing the unzipped Firebase SDK. "
+      "If left blank, the most recent release will be downloaded and used.")
   args = parser.parse_args()
   for feature in args.feature:
     feature_str = str(feature)
     if not feature_str in FIREBASE_FEATURES_ARRAY:
       return False
     FEATURE_ARGS_ARRAY.append(feature_str)
+
+  global FIREBASE_SDK_PATH
+  FIREBASE_SDK_PATH = args.firebase_sdk
+
   return True
 
 
@@ -372,7 +405,10 @@ def main():
     exit()
 
   add_cocos2dx_library()
-  add_firebase_sdk()
+  if FIREBASE_SDK_PATH:
+    copy_firebase_sdk()
+  else:
+    retrieve_latest_firebase_sdk()
   add_cpp_default_template()
   add_project_template_files()
   update_ios_project_file()
