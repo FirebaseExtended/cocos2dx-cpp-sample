@@ -37,6 +37,7 @@ Where FIREBASE_FEATURE is one of the following:
 
 import argparse
 import fileinput
+import glob
 import logging
 import os
 import platform
@@ -48,7 +49,7 @@ import zipfile
 # The setup_firebase_sample.py script directory.
 ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 # The Firebase SDK download URL.
-FIREBASE_SDK_URL = "https://dl.google.com/firebase/sdk/cpp/firebase_cpp_sdk_2.1.2.zip"
+FIREBASE_SDK_URL = "https://dl.google.com/firebase/sdk/cpp/firebase_cpp_sdk_2.1.3.zip"
 # The cocos2d-x GitHub release download URL.
 COCOS2DX_GITHUB_URL = "https://github.com/cocos2d/cocos2d-x/archive/cocos2d-x-3.13.1.zip"
 # The iOS project directory.
@@ -67,7 +68,13 @@ LIBS_DIR = os.path.join(ROOT_DIRECTORY, "sample_project/Libs")
 # The Firebase features passed by the caller of this script.
 FEATURE_ARGS_ARRAY = []
 # The Firebase features supported by this script.
-FIREBASE_FEATURES_ARRAY = ["AdMob", "Analytics", "Invites", "Messaging"]
+FIREBASE_FEATURES_ARRAY = [
+    "AdMob",
+    "Analytics",
+    "Invites",
+    "Messaging",
+    "Remote_Config",
+]
 # The path to the Firebase SDK to use. This is optional, if left blank the most
 # recent release will be downloaded and used.
 FIREBASE_SDK_PATH = None
@@ -224,13 +231,14 @@ def update_ios_project_file():
   project file.
   """
   firebase_feature = FEATURE_ARGS_ARRAY[0].lower()
+  firebase_feature_camelcase = FEATURE_ARGS_ARRAY[0].replace("_", "")
   for line in fileinput.input(IOS_PROJECT_FILE, inplace=True):
     if "{FIREBASE_FEATURE}" in line:
       print line.replace("{FIREBASE_FEATURE}", firebase_feature).replace("\n",
                                                                          "")
     elif "{FIREBASE_FEATURE_CAMELCASE}" in line:
       print line.replace("{FIREBASE_FEATURE_CAMELCASE}",
-                         FEATURE_ARGS_ARRAY[0]).replace("\n", "")
+                         firebase_feature_camelcase).replace("\n", "")
     else:
       print line.replace("\n", "")
   logging.info("Updated the iOS project.pbxproj file.")
@@ -245,13 +253,14 @@ def update_android_makefile():
   project.
   """
   firebase_feature = FEATURE_ARGS_ARRAY[0].lower()
+  firebase_feature_camelcase = FEATURE_ARGS_ARRAY[0].replace("_", "")
   for line in fileinput.input(ANDROID_MAKEFILE, inplace=True):
     if "{FIREBASE_FEATURE}" in line:
       print line.replace("{FIREBASE_FEATURE}", firebase_feature).replace("\n",
                                                                          "")
     elif "{FIREBASE_FEATURE_CAMELCASE}" in line:
       print line.replace("{FIREBASE_FEATURE_CAMELCASE}",
-                         FEATURE_ARGS_ARRAY[0]).replace("\n", "")
+                         firebase_feature_camelcase).replace("\n", "")
     else:
       print line.replace("\n", "")
   logging.info("Updated the Android.mk file.")
