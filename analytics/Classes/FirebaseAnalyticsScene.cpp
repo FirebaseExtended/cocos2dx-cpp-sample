@@ -35,6 +35,7 @@
 
 USING_NS_CC;
 
+
 /// Padding for the UI elements.
 static const float kUIElementPadding = 10.0;
 

@@ -71,6 +71,7 @@ FEATURE_ARGS_ARRAY = []
 FIREBASE_FEATURES_ARRAY = [
     "AdMob",
     "Analytics",
+    "Auth",
     "Invites",
     "Messaging",
     "Remote_Config",

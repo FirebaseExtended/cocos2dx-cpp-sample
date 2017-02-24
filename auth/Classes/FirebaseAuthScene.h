@@ -18,25 +18,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef FIREBASE_COCOS_CLASSES_FIREBASE_ANALYTICS_SCENE_H_
-#define FIREBASE_COCOS_CLASSES_FIREBASE_ANALYTICS_SCENE_H_
+#ifndef FIREBASE_COCOS_CLASSES_FIREBASE_AUTH_SCENE_H_
+#define FIREBASE_COCOS_CLASSES_FIREBASE_AUTH_SCENE_H_
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
 #include "FirebaseCocos.h"
 #include "FirebaseScene.h"
+#include "firebase/auth.h"
+#include "firebase/future.h"
 
-
-class FirebaseAnalyticsScene : public FirebaseScene {
+class FirebaseAuthScene : public FirebaseScene {
  public:
   static cocos2d::Scene *createScene();
-
-  FirebaseAnalyticsScene() :
-      blue_button_click_count_(0),
-      total_button_click_count_(0),
-      previous_button_clicked_("None"),
-      green_button_click_count_(0) {}
 
   bool init() override;
 
@@ -44,35 +39,35 @@ class FirebaseAnalyticsScene : public FirebaseScene {
 
   void menuCloseAppCallback(cocos2d::Ref *pSender) override;
 
-  CREATE_FUNC(FirebaseAnalyticsScene);
-
+  CREATE_FUNC(FirebaseAuthScene);
  private:
-  /// A blue button that records how many times it has been clicked.
-  cocos2d::ui::Button* blue_button_;
+  /// A text field where a login email address may be entered.
+  cocos2d::ui::TextField* email_text_field_;
 
-  /// A red button that records how many times any button has been clicked.
-  cocos2d::ui::Button* red_button_;
+  /// A text field where a login password may be entered.
+  cocos2d::ui::TextField* password_text_field_;
 
-  /// A yellow button that records what button was clicked previously.
-  cocos2d::ui::Button* yellow_button_;
+  /// A button that uses the given email and password to register a user.
+  cocos2d::ui::Button* register_user_button_;
 
-  /// A green button that records what ratio of button clicks were green.
-  cocos2d::ui::Button* green_button_;
+  /// A button that uses the given email and password to log in.
+  cocos2d::ui::Button* credentialed_sign_in_button_;
 
-  // The following are some arbitrary statistics to collect to demonstrate how
-  // they can be reported to Firebase Analytics.
+  /// A button that logs in anonymously.
+  cocos2d::ui::Button* anonymous_sign_in_button_;
 
-  /// The total number of times the blue button has been clicked.
-  int blue_button_click_count_;
+  /// A button that logs the user out regardless of how they logged in.
+  cocos2d::ui::Button* sign_out_button_;
 
-  /// The total number of times any button has been clicked.
-  int total_button_click_count_;
+  /// A future that completes some time after attempting to create a new user.
+  firebase::Future<firebase::auth::User*> create_user_future_;
 
-  /// The button that was clicked previously.
-  const char* previous_button_clicked_;
+  /// A future that completes some time after one of the login buttons is
+  /// pressed.
+  firebase::Future<firebase::auth::User*> sign_in_future_;
 
-  /// What fraction of the clicks were made on the green button.
-  int green_button_click_count_;
+  /// Keeps track of whether or not the sign in attempt was made anonymously.
+  bool anonymous_sign_in_;
 };
 
-#endif  // FIREBASE_COCOS_CLASSES_FIREBASE_ANALYTICS_SCENE_H_
+#endif  // FIREBASE_COCOS_CLASSES_FIREBASE_AUTH_SCENE_H_

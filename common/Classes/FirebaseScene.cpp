@@ -84,6 +84,19 @@ cocos2d::ui::Button* FirebaseScene::createButton(
   return createButton(buttonEnabled, buttonTitleText, cocos2d::Color3B::WHITE);
 }
 
+cocos2d::ui::TextField* FirebaseScene::createTextField(
+    const char* placeholder) {
+  auto visibleSize = Director::getInstance()->getVisibleSize();
+  cocos2d::Vec2 origin = Director::getInstance()->getVisibleOrigin();
+  cocos2d::ui::TextField* text_field =
+      ui::TextField::create(placeholder, "fonts/arial.ttf", 12);
+  text_field->setPlaceHolderColor(Color3B::WHITE);
+  nextYPosition -= text_field->getContentSize().height + kUIElementPadding;
+  text_field->setPosition(
+      cocos2d::Vec2(origin.x + visibleSize.width / 4, nextYPosition));
+  return text_field;
+}
+
 void FirebaseScene::createScrollView(float yPosition, float widthFraction) {
   cocos2d::Size visibleSize = Director::getInstance()->getVisibleSize();
   cocos2d::Vec2 origin = Director::getInstance()->getVisibleOrigin();

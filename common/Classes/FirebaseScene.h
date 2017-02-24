@@ -64,6 +64,9 @@ class FirebaseScene : public cocos2d::Layer {
   cocos2d::ui::Button *createButton(
       bool buttonEnabled, const std::string& buttonTitleText);
 
+  /// Creates a single line text entry field.
+  cocos2d::ui::TextField *createTextField(const char* placeholder);
+
   /// Creates the ScrollView that contains a TextWidget for displaying log text
   /// to the user.
   ///
