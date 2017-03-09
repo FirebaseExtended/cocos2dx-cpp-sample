@@ -96,13 +96,13 @@ bool FirebaseAuthScene::init() {
   logMessage("Created the Auth %x class for the Firebase app.",
              static_cast<int>(reinterpret_cast<intptr_t>(auth)));
 
-  // It's possible for CurrentUser() to be non-null if the previous run
+  // It's possible for current_user() to be non-null if the previous run
   // left us in a signed-in state.
-  if (auth->CurrentUser() == nullptr) {
+  if (auth->current_user() == nullptr) {
     logMessage("No user signed in at creation time.");
   } else {
     logMessage("Current user %s already signed in, so signing them out.",
-               auth->CurrentUser()->DisplayName().c_str());
+               auth->current_user()->display_name().c_str());
   }
 
   email_text_field_ = createTextField(kEmailPlaceholderText);

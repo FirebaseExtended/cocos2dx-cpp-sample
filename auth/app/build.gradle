@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "org.cocos2dx.hellocpp"
-        minSdkVersion 10
+        minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -46,8 +46,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':libcocos2dx')
-    compile 'com.google.firebase:firebase-auth:10.0.1'
-    compile 'com.google.android.gms:play-services-base:10.0.1'
+    compile 'com.google.firebase:firebase-auth:10.2.0'
+    compile 'com.google.android.gms:play-services-base:10.2.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
