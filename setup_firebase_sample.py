@@ -32,7 +32,7 @@ Run the script:
 
 Where FIREBASE_FEATURE is one of the following:
 
-  AdMob, Analytics, Auth, Invites, Messaging, or Remote_Config
+  AdMob, Analytics, Auth, Database, Invites, Messaging, or Remote_Config
 """
 
 import argparse
@@ -49,7 +49,7 @@ import zipfile
 # The setup_firebase_sample.py script directory.
 ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 # The Firebase SDK download URL.
-FIREBASE_SDK_URL = "https://dl.google.com/firebase/sdk/cpp/firebase_cpp_sdk_3.0.0.zip"
+FIREBASE_SDK_URL = "http://firebase.google.com/download/cpp"
 # The cocos2d-x GitHub release download URL.
 COCOS2DX_GITHUB_URL = "https://github.com/cocos2d/cocos2d-x/archive/cocos2d-x-3.13.1.zip"
 # The iOS project directory.
@@ -72,6 +72,7 @@ FIREBASE_FEATURES_ARRAY = [
     "AdMob",
     "Analytics",
     "Auth",
+    "Database",
     "Invites",
     "Messaging",
     "Remote_Config",
@@ -207,15 +208,21 @@ def add_project_template_files():
   Raises:
     IOError: An error occurred copying the project template files.
   """
+  firebase_feature = FEATURE_ARGS_ARRAY[0].lower()
   ios_project_file = os.path.join(
       ROOT_DIRECTORY, "common/project_template_files/project.pbxproj")
-  android_makefile = os.path.join(ROOT_DIRECTORY,
-                                  "common/project_template_files/Android.mk")
+  common_android_makefile = os.path.join(
+      ROOT_DIRECTORY, "common/project_template_files/Android.mk")
+  project_android_makefile = os.path.join(
+      ROOT_DIRECTORY, firebase_feature + "/app/jni/Android.mk")
   ios_dst_dir = os.path.join(IOS_PROJECT_DIR, "HelloCpp.xcodeproj")
   android_dst_dir = os.path.join(ANDROID_PROJECT_DIR, "app/jni")
   try:
     shutil.copy(ios_project_file, ios_dst_dir)
-    shutil.copy(android_makefile, android_dst_dir)
+    if os.path.isfile(project_android_makefile):
+      shutil.copy(project_android_makefile, android_dst_dir)
+    else:
+      shutil.copy(common_android_makefile, android_dst_dir)
   except IOError as e:
     logging.exception("IOError: [Errno %d] %s: in %s", e.errno, e.strerror,
                       sys._getframe().f_code.co_name)
