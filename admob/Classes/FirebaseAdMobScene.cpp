@@ -172,13 +172,13 @@ class LoggingRewardedVideoListener : public rewarded_video::Listener {
 static void onAdViewInitializeCompletionCallback(
     const firebase::Future<void>& future, void* userData) {
   FirebaseScene* scene = static_cast<FirebaseScene*>(userData);
-  if (future.Error() == firebase::admob::kAdMobErrorNone) {
+  if (future.error() == firebase::admob::kAdMobErrorNone) {
     scene->logMessage("Initializing the ad view completed successfully.");
   } else {
     scene->logMessage("Initializing the ad view failed.");
     scene->logMessage(
         "ERROR: Action failed with error code %d and message \"%s\".",
-        future.Error(), future.ErrorMessage());
+        future.error(), future.error_message());
   }
 }
 
@@ -187,13 +187,13 @@ static void onAdViewInitializeCompletionCallback(
 static void onAdViewLoadAdCompletionCallback(
     const firebase::Future<void>& future, void* userData) {
   FirebaseScene* scene = static_cast<FirebaseScene*>(userData);
-  if (future.Error() == firebase::admob::kAdMobErrorNone) {
+  if (future.error() == firebase::admob::kAdMobErrorNone) {
     scene->logMessage("Loading the ad view completed successfully.");
   } else {
     scene->logMessage("Loading the ad view failed.");
     scene->logMessage(
         "ERROR: Action failed with error code %d and message \"%s\".",
-        future.Error(), future.ErrorMessage());
+        future.error(), future.error_message());
   }
 }
 
@@ -202,14 +202,14 @@ static void onAdViewLoadAdCompletionCallback(
 static void onInterstitialAdInitializeCompletionCallback(
     const firebase::Future<void>& future, void* userData) {
   FirebaseScene* scene = static_cast<FirebaseScene*>(userData);
-  if (future.Error() == firebase::admob::kAdMobErrorNone) {
+  if (future.error() == firebase::admob::kAdMobErrorNone) {
     scene->logMessage(
         "Initializing the interstitial ad completed successfully.");
   } else {
     scene->logMessage("Initializing the interstitial ad failed.");
     scene->logMessage(
         "ERROR: Action failed with error code %d and message \"%s\".",
-        future.Error(), future.ErrorMessage());
+        future.error(), future.error_message());
   }
 }
 
@@ -218,13 +218,13 @@ static void onInterstitialAdInitializeCompletionCallback(
 static void onInterstitialAdLoadAdCompletionCallback(
     const firebase::Future<void>& future, void* userData) {
   FirebaseScene* scene = static_cast<FirebaseScene*>(userData);
-  if (future.Error() == firebase::admob::kAdMobErrorNone) {
+  if (future.error() == firebase::admob::kAdMobErrorNone) {
     scene->logMessage("Loading the interstitial ad completed successfully.");
   } else {
     scene->logMessage("Loading the interstitial ad failed.");
     scene->logMessage(
         "ERROR: Action failed with error code %d and message \"%s\".",
-        future.Error(), future.ErrorMessage());
+        future.error(), future.error_message());
   }
 }
 
@@ -233,13 +233,13 @@ static void onInterstitialAdLoadAdCompletionCallback(
 static void onRewardedVideoInitializeCompletionCallback(
     const firebase::Future<void>& future, void* userData) {
   FirebaseScene* scene = static_cast<FirebaseScene*>(userData);
-  if (future.Error() == firebase::admob::kAdMobErrorNone) {
+  if (future.error() == firebase::admob::kAdMobErrorNone) {
     scene->logMessage("Initializing rewarded video completed successfully.");
   } else {
     scene->logMessage("Initializing rewarded video failed.");
     scene->logMessage(
         "ERROR: Action failed with error code %d and message \"%s\".",
-        future.Error(), future.ErrorMessage());
+        future.error(), future.error_message());
   }
 }
 
@@ -248,13 +248,13 @@ static void onRewardedVideoInitializeCompletionCallback(
 static void onRewardedVideoLoadAdCompletionCallback(
     const firebase::Future<void>& future, void* userData) {
   FirebaseScene* scene = static_cast<FirebaseScene*>(userData);
-  if (future.Error() == firebase::admob::kAdMobErrorNone) {
+  if (future.error() == firebase::admob::kAdMobErrorNone) {
     scene->logMessage("Loading rewarded video completed successfully.");
   } else {
     scene->logMessage("Loading rewarded video failed.");
     scene->logMessage(
         "ERROR: Action failed with error code %d and message \"%s\".",
-        future.Error(), future.ErrorMessage());
+        future.error(), future.error_message());
     // Rewarded Video returned an error. This might be because the developer did
     // not put their Rewarded Video ad unit into kRewardedVideoAdUnit above.
     scene->logMessage("WARNING: Is your Rewarded Video ad unit ID correct?");
@@ -539,13 +539,13 @@ bool FirebaseAdMobScene::init() {
 void FirebaseAdMobScene::update(float delta) {
   // If the ad view's Initialize() future has completed successfully, enable the
   // ad view buttons.
-  if (adView->InitializeLastResult().Status() ==
+  if (adView->InitializeLastResult().status() ==
           firebase::kFutureStatusComplete &&
-      adView->InitializeLastResult().Error() ==
+      adView->InitializeLastResult().error() ==
           firebase::admob::kAdMobErrorNone) {
     // If ad view's LoadAd() has not been called yet, enable the load ad view
     // button.
-    if (adView->LoadAdLastResult().Status() == firebase::kFutureStatusInvalid) {
+    if (adView->LoadAdLastResult().status() == firebase::kFutureStatusInvalid) {
       loadAdViewBtn->setEnabled(true);
     }
     showHideAdViewBtn->setEnabled(true);
@@ -554,21 +554,21 @@ void FirebaseAdMobScene::update(float delta) {
 
   // Once the InterstitialAd::Intitialize() future has completed successfully,
   // enable the interstitial ad buttons.
-  if (interstitialAd->InitializeLastResult().Status() ==
+  if (interstitialAd->InitializeLastResult().status() ==
           firebase::kFutureStatusComplete &&
-      interstitialAd->InitializeLastResult().Error() ==
+      interstitialAd->InitializeLastResult().error() ==
           firebase::admob::kAdMobErrorNone) {
     // If InterstitialAd::LoadAd() method has not been called yet, enable the
     // load interstitial ad button.
-    if (interstitialAd->LoadAdLastResult().Status() ==
+    if (interstitialAd->LoadAdLastResult().status() ==
         firebase::kFutureStatusInvalid) {
       loadInterstitialAdBtn->setEnabled(true);
     }
     // Once the InterstitialAd::LoadAd() future has completed successfully,
     // enable the show interstitial ad button.
-    if (interstitialAd->LoadAdLastResult().Status() ==
+    if (interstitialAd->LoadAdLastResult().status() ==
             firebase::kFutureStatusComplete &&
-        interstitialAd->LoadAdLastResult().Error() ==
+        interstitialAd->LoadAdLastResult().error() ==
             firebase::admob::kAdMobErrorNone &&
         !interstitialAdShown) {
       showInterstitialAdBtn->setEnabled(true);
@@ -577,9 +577,9 @@ void FirebaseAdMobScene::update(float delta) {
     // ad has been displayed and dismissed by the user, clean up the existing
     // interstitial ad object and create a new one. Note: InterstitialAd is a
     // single-use object that can load and show a single AdMob interstitial ad.
-    if (interstitialAd->ShowLastResult().Status() ==
+    if (interstitialAd->ShowLastResult().status() ==
             firebase::kFutureStatusComplete &&
-        interstitialAd->GetPresentationState() ==
+        interstitialAd->presentation_state() ==
             firebase::admob::InterstitialAd::kPresentationStateHidden) {
       // Invalidate all Futures and enable loadInterstitialAdBtn.
       interstitialAdShown = false;
@@ -592,11 +592,11 @@ void FirebaseAdMobScene::update(float delta) {
     }
     // If the InterstitialAd::LoadAd() future completed but there was an error,
     // then clean up the existing interstitial ad object and create a new one.
-    if (interstitialAd->InitializeLastResult().Status() ==
+    if (interstitialAd->InitializeLastResult().status() ==
             firebase::kFutureStatusComplete &&
-        interstitialAd->LoadAdLastResult().Status() ==
+        interstitialAd->LoadAdLastResult().status() ==
             firebase::kFutureStatusComplete &&
-        interstitialAd->LoadAdLastResult().Error() !=
+        interstitialAd->LoadAdLastResult().error() !=
             firebase::admob::kAdMobErrorNone) {
       // Invalidate all Futures and enable loadInterstitialAdBtn.
       interstitialAdShown = false;
@@ -611,21 +611,21 @@ void FirebaseAdMobScene::update(float delta) {
 
   // Once the rewarded_video::Intitialize() future has completed successfully,
   // enable the rewarded video buttons.
-  if (rewarded_video::InitializeLastResult().Status() ==
+  if (rewarded_video::InitializeLastResult().status() ==
           firebase::kFutureStatusComplete &&
-      rewarded_video::InitializeLastResult().Error() ==
+      rewarded_video::InitializeLastResult().error() ==
           firebase::admob::kAdMobErrorNone) {
     // If rewarded_video::LoadAd() method has not been called yet, enable the
     // load rewarded video button.
-    if (rewarded_video::LoadAdLastResult().Status() ==
+    if (rewarded_video::LoadAdLastResult().status() ==
         firebase::kFutureStatusInvalid) {
       loadRewardedVideoBtn->setEnabled(true);
     }
     // Once the rewarded_video::LoadAd() future has completed successfully,
     // enable the show rewarded video button.
-    if (rewarded_video::LoadAdLastResult().Status() ==
+    if (rewarded_video::LoadAdLastResult().status() ==
             firebase::kFutureStatusComplete &&
-        rewarded_video::LoadAdLastResult().Error() ==
+        rewarded_video::LoadAdLastResult().error() ==
             firebase::admob::kAdMobErrorNone &&
         !rewardedVideoAdShown) {
       showRewardedVideoBtn->setEnabled(true);
@@ -634,9 +634,9 @@ void FirebaseAdMobScene::update(float delta) {
     // video has been displayed and dismissed by the user, invalidate all
     // existing futures for rewarded_video methods and enable the load rewarded
     // video button.
-    if (rewarded_video::ShowLastResult().Status() ==
+    if (rewarded_video::ShowLastResult().status() ==
             firebase::kFutureStatusComplete &&
-        rewarded_video::GetPresentationState() ==
+        rewarded_video::presentation_state() ==
             firebase::admob::rewarded_video::kPresentationStateHidden) {
       // Invalidate all Futures and enable loadRewardedVideoBtn.
       rewardedVideoAdShown = false;
@@ -648,11 +648,11 @@ void FirebaseAdMobScene::update(float delta) {
     }
     // If the rewarded_video::LoadAd() future completed but there was an error,
     // then clean up the existing rewarded_video namespace and reinitialize.
-    if (rewarded_video::InitializeLastResult().Status() ==
+    if (rewarded_video::InitializeLastResult().status() ==
             firebase::kFutureStatusComplete &&
-        rewarded_video::LoadAdLastResult().Status() ==
+        rewarded_video::LoadAdLastResult().status() ==
             firebase::kFutureStatusComplete &&
-        rewarded_video::LoadAdLastResult().Error() !=
+        rewarded_video::LoadAdLastResult().error() !=
             firebase::admob::kAdMobErrorNone) {
       // Invalidate all Futures and enable loadRewardedVideoBtn.
       rewardedVideoAdShown = false;
