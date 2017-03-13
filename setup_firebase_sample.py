@@ -51,7 +51,7 @@ ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 # The Firebase SDK download URL.
 FIREBASE_SDK_URL = "http://firebase.google.com/download/cpp"
 # The cocos2d-x GitHub release download URL.
-COCOS2DX_GITHUB_URL = "https://github.com/cocos2d/cocos2d-x/archive/cocos2d-x-3.13.1.zip"
+COCOS2DX_GITHUB_URL = "https://github.com/cocos2d/cocos2d-x/archive/cocos2d-x-3.14.1.zip"
 # The iOS project directory.
 IOS_PROJECT_DIR = os.path.join(ROOT_DIRECTORY, "sample_project/proj.ios_mac")
 # The iOS project.pbxproj file.
