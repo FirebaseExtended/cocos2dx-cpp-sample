@@ -32,7 +32,7 @@ Run the script:
 
 Where FIREBASE_FEATURE is one of the following:
 
-  AdMob, Analytics, Auth, Database, Invites, Messaging, or Remote_Config
+  AdMob, Analytics, Auth, Database, Invites, Messaging, Remote_Config or Storage
 """
 
 import argparse
@@ -76,10 +76,14 @@ FIREBASE_FEATURES_ARRAY = [
     "Invites",
     "Messaging",
     "Remote_Config",
+    "Storage",
 ]
 # The path to the Firebase SDK to use. This is optional, if left blank the most
 # recent release will be downloaded and used.
 FIREBASE_SDK_PATH = None
+# The path to the Cocos2D-x library to use. This is optional, if left blank the
+# most recent release will be downloaded and used.
+COCOS2DX_LIBRARY_PATH = None
 
 
 def add_cocos2dx_library():
@@ -99,8 +103,9 @@ def add_cocos2dx_library():
   os.makedirs(sample_project_dir)
   os.chdir(sample_project_dir)
   try:
+    url = COCOS2DX_LIBRARY_PATH or COCOS2DX_GITHUB_URL
     zip_name = "cocos2dx.zip"
-    filename, headers = urllib.urlretrieve(COCOS2DX_GITHUB_URL, zip_name)
+    filename, headers = urllib.urlretrieve(url, zip_name)
     zip_file = zipfile.ZipFile(filename)
     zip_file.extractall(sample_project_dir)
     zip_file.close()
@@ -130,25 +135,6 @@ def add_cocos2dx_library():
   logging.info("Finished adding the cocos2d-x library to the sample project.")
 
 
-def copy_firebase_sdk():
-  """Copies the given version of the Firebase SDK to the sample project.
-
-  Raises:
-    IOError: An error occurred copying the sdk to the target directory.
-  """
-  logging.info("Copying the Firebase SDK...")
-  try:
-    shutil.copytree(FIREBASE_SDK_PATH, os.path.join(LIBS_DIR,
-                                                    "firebase_cpp_sdk"))
-  except IOError as e:
-    logging.exception("IOError: [Errno %d] %s: in %s", e.errno, e.strerror,
-                      sys._getframe().f_code.co_name)
-    exit()
-  logging.info(
-      "Finished copying the Firebase SDK to the sample project's Libs "
-      "directory")
-
-
 def retrieve_latest_firebase_sdk():
   """Adds the latest version of the Firebase SDK to the sample project.
 
@@ -158,8 +144,9 @@ def retrieve_latest_firebase_sdk():
   """
   logging.info("Adding the Firebase SDK (this may take a bit)...")
   try:
+    url = FIREBASE_SDK_PATH or FIREBASE_SDK_URL
     zip_name = "firebase_cpp_sdk.zip"
-    filename, headers = urllib.urlretrieve(FIREBASE_SDK_URL, zip_name)
+    filename, headers = urllib.urlretrieve(url, zip_name)
     zip_file = zipfile.ZipFile(filename)
     zip_file.extractall(LIBS_DIR)
     zip_file.close()
@@ -209,16 +196,21 @@ def add_project_template_files():
     IOError: An error occurred copying the project template files.
   """
   firebase_feature = FEATURE_ARGS_ARRAY[0].lower()
-  ios_project_file = os.path.join(
+  common_ios_project_file = os.path.join(
       ROOT_DIRECTORY, "common/project_template_files/project.pbxproj")
+  project_ios_project_file = os.path.join(
+      ROOT_DIRECTORY, firebase_feature, "project_files/project.pbxproj")
   common_android_makefile = os.path.join(
       ROOT_DIRECTORY, "common/project_template_files/Android.mk")
   project_android_makefile = os.path.join(
-      ROOT_DIRECTORY, firebase_feature + "/app/jni/Android.mk")
+      ROOT_DIRECTORY, firebase_feature, "project_files/Android.mk")
   ios_dst_dir = os.path.join(IOS_PROJECT_DIR, "HelloCpp.xcodeproj")
   android_dst_dir = os.path.join(ANDROID_PROJECT_DIR, "app/jni")
   try:
-    shutil.copy(ios_project_file, ios_dst_dir)
+    if os.path.isfile(project_ios_project_file):
+      shutil.copy(project_ios_project_file, ios_dst_dir)
+    else:
+      shutil.copy(common_ios_project_file, ios_dst_dir)
     if os.path.isfile(project_android_makefile):
       shutil.copy(project_android_makefile, android_dst_dir)
     else:
@@ -230,17 +222,17 @@ def add_project_template_files():
   logging.info("Added the project template files to the sample project.")
 
 
-def update_ios_project_file():
-  """Updates the iOS project.pbxproj file.
+def update_project_file(filename):
+  """Updates the given project file.
 
   Replaces "{FIREBASE_FEATURE}" placeholders in the project file with the
   Firebase feature passed to this script. Specifying the feature ensures that
-  the proper frameworks and implementation files are referenced in the iOS
-  project file.
+  the proper frameworks and implementation files are referenced in the project
+  file.
   """
   firebase_feature = FEATURE_ARGS_ARRAY[0].lower()
   firebase_feature_camelcase = FEATURE_ARGS_ARRAY[0].replace("_", "")
-  for line in fileinput.input(IOS_PROJECT_FILE, inplace=True):
+  for line in fileinput.input(filename, inplace=True):
     if "{FIREBASE_FEATURE}" in line:
       print line.replace("{FIREBASE_FEATURE}", firebase_feature).replace("\n",
                                                                          "")
@@ -249,28 +241,17 @@ def update_ios_project_file():
                          firebase_feature_camelcase).replace("\n", "")
     else:
       print line.replace("\n", "")
+
+
+def update_ios_project_file():
+  """Updates the iOS project.pbxproj file."""
+  update_project_file(IOS_PROJECT_FILE)
   logging.info("Updated the iOS project.pbxproj file.")
 
 
 def update_android_makefile():
-  """Updates the Android.mk file.
-
-  Replaces "{FIREBASE_FEATURE}" placeholders in the Android.mk file with the
-  Firebase feature passed to this script. Specifying the feature ensures that
-  the proper libraries and implementation files are referenced in the Android
-  project.
-  """
-  firebase_feature = FEATURE_ARGS_ARRAY[0].lower()
-  firebase_feature_camelcase = FEATURE_ARGS_ARRAY[0].replace("_", "")
-  for line in fileinput.input(ANDROID_MAKEFILE, inplace=True):
-    if "{FIREBASE_FEATURE}" in line:
-      print line.replace("{FIREBASE_FEATURE}", firebase_feature).replace("\n",
-                                                                         "")
-    elif "{FIREBASE_FEATURE_CAMELCASE}" in line:
-      print line.replace("{FIREBASE_FEATURE_CAMELCASE}",
-                         firebase_feature_camelcase).replace("\n", "")
-    else:
-      print line.replace("\n", "")
+  """Updates the Android.mk file."""
+  update_project_file(ANDROID_MAKEFILE)
   logging.info("Updated the Android.mk file.")
 
 
@@ -385,8 +366,15 @@ def check_valid_arguments():
       action='store',
       const=None,
       metavar="FIREBASE_SDK",
-      help="The path to the directory containing the unzipped Firebase SDK. "
-      "If left blank, the most recent release will be downloaded and used.")
+      help="The path to the Firebase SDK zip file. If left blank, the most "
+      "recent release will be downloaded and used.")
+  parser.add_argument(
+      "--cocos2dx_library",
+      action='store',
+      const=None,
+      metavar="COCOS2DX_LIBRARY",
+      help="The path to Cocos2d-x library zip file. If left blank, the most "
+      "recent release will be downloaded and used.")
   args = parser.parse_args()
   for feature in args.feature:
     feature_str = str(feature)
@@ -396,6 +384,9 @@ def check_valid_arguments():
 
   global FIREBASE_SDK_PATH
   FIREBASE_SDK_PATH = args.firebase_sdk
+
+  global COCOS2DX_LIBRARY_PATH
+  COCOS2DX_LIBRARY_PATH = args.cocos2dx_library
 
   return True
 
@@ -422,10 +413,7 @@ def main():
     exit()
 
   add_cocos2dx_library()
-  if FIREBASE_SDK_PATH:
-    copy_firebase_sdk()
-  else:
-    retrieve_latest_firebase_sdk()
+  retrieve_latest_firebase_sdk()
   add_cpp_default_template()
   add_project_template_files()
   update_ios_project_file()
