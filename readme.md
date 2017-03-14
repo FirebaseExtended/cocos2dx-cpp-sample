@@ -24,7 +24,7 @@ Getting Started
 
 - Clone the Firebase Cocos2d-x Samples GitHub repo.
   ```
-  git clone https://github.com/firebase/cocos-samples.git
+  git clone https://github.com/firebase/cocos2dx-cpp-sample.git
   ```
 - Navigate to the directory that you just cloned and run the Firebase setup
   script, where FIREBASE_FEATURE is one of the following:
@@ -71,7 +71,7 @@ Getting Started
 Support
 -------
 
-[https://firebase.google.com/support/]()
+https://firebase.google.com/support/
 
 License
 -------
