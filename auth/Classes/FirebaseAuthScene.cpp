@@ -33,7 +33,6 @@
 
 USING_NS_CC;
 
-
 /// Padding for the UI elements.
 static const float kUIElementPadding = 10.0;
 
@@ -78,7 +77,7 @@ bool FirebaseAuthScene::init() {
 
   // Create the Firebase label.
   auto firebaseLabel =
-      Label::createWithTTF("Firebase-Auth", "fonts/Marker Felt.ttf", 20);
+      Label::createWithTTF("Firebase Auth", "fonts/Marker Felt.ttf", 20);
   nextYPosition =
       origin.y + visibleSize.height - firebaseLabel->getContentSize().height;
   firebaseLabel->setPosition(
@@ -115,8 +114,7 @@ bool FirebaseAuthScene::init() {
 
   register_user_button_ = createButton(true, "Register user");
   register_user_button_->addTouchEventListener(
-      [this, auth](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this, auth](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             this->logMessage("Registering user...");
@@ -136,8 +134,7 @@ bool FirebaseAuthScene::init() {
 
   credentialed_sign_in_button_ = createButton(true, "Sign in");
   credentialed_sign_in_button_->addTouchEventListener(
-      [this, auth](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this, auth](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             this->logMessage("Signing in...");
@@ -161,8 +158,7 @@ bool FirebaseAuthScene::init() {
 
   anonymous_sign_in_button_ = createButton(true, "Sign in anonymously");
   anonymous_sign_in_button_->addTouchEventListener(
-      [this, auth](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this, auth](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             this->logMessage("Signing in anonymously...");
@@ -183,8 +179,7 @@ bool FirebaseAuthScene::init() {
 
   sign_out_button_ = createButton(false, "Sign out");
   sign_out_button_->addTouchEventListener(
-      [this, auth](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this, auth](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             this->logMessage("Signed out");

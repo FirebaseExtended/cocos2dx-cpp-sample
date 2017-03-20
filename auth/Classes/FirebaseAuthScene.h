@@ -29,7 +29,6 @@
 #include "firebase/auth.h"
 #include "firebase/future.h"
 
-
 class FirebaseAuthScene : public FirebaseScene {
  public:
   static cocos2d::Scene *createScene();

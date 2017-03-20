@@ -87,7 +87,7 @@ bool FirebaseStorageScene::init() {
 
   // Create the Firebase label.
   auto firebaseLabel =
-      Label::createWithTTF("Firebase-Storage", "fonts/Marker Felt.ttf", 20);
+      Label::createWithTTF("Firebase Storage", "fonts/Marker Felt.ttf", 20);
   nextYPosition =
       origin.y + visibleSize.height - firebaseLabel->getContentSize().height;
   firebaseLabel->setPosition(
@@ -145,8 +145,7 @@ bool FirebaseStorageScene::init() {
 
   get_bytes_button_ = createButton(false, "Query");
   get_bytes_button_->addTouchEventListener(
-      [this](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             const char* key = key_text_field_->getString().c_str();
@@ -175,8 +174,7 @@ bool FirebaseStorageScene::init() {
 
   put_bytes_button_ = createButton(false, "Set");
   put_bytes_button_->addTouchEventListener(
-      [this](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             const char* key = key_text_field_->getString().c_str();

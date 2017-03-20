@@ -27,7 +27,6 @@
 #include "FirebaseCocos.h"
 #include "FirebaseScene.h"
 
-
 class FirebaseAnalyticsScene : public FirebaseScene {
  public:
   static cocos2d::Scene *createScene();

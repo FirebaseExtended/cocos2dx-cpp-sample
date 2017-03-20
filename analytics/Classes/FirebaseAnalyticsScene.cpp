@@ -35,7 +35,6 @@
 
 USING_NS_CC;
 
-
 /// Padding for the UI elements.
 static const float kUIElementPadding = 10.0;
 
@@ -82,13 +81,13 @@ bool FirebaseAnalyticsScene::init() {
   auto visibleSize = Director::getInstance()->getVisibleSize();
   cocos2d::Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-  // Intitialize Firebase-Analytics.
+  // Intitialize Firebase Analytics.
   CCLOG("Initializing the Analytics with Firebase API.");
   firebase::analytics::Initialize(*firebase::App::GetInstance());
 
   // Create the Firebase label.
   auto firebaseLabel =
-      Label::createWithTTF("Firebase-Analytics", "fonts/Marker Felt.ttf", 20);
+      Label::createWithTTF("Firebase Analytics", "fonts/Marker Felt.ttf", 20);
   nextYPosition =
       origin.y + visibleSize.height - firebaseLabel->getContentSize().height;
   firebaseLabel->setPosition(
@@ -107,8 +106,7 @@ bool FirebaseAnalyticsScene::init() {
   // Set up the blue button.
   blue_button_ = createButton(true, kBlueButtonText, kBlueButtonColor);
   blue_button_->addTouchEventListener(
-      [this](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             // When the blue button is clicked it logs an event with parameters
@@ -142,8 +140,7 @@ bool FirebaseAnalyticsScene::init() {
   // Set up the red button.
   red_button_ = createButton(true, kRedButtonText, kRedButtonColor);
   red_button_->addTouchEventListener(
-      [this](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             // When the red button is clicked it logs an event with parameters
@@ -176,8 +173,7 @@ bool FirebaseAnalyticsScene::init() {
   // Set up the yellow button.
   yellow_button_ = createButton(true, kYellowButtonText, kYellowButtonColor);
   yellow_button_->addTouchEventListener(
-      [this](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             // When the yellow button is clicked it logs an event with
@@ -210,8 +206,7 @@ bool FirebaseAnalyticsScene::init() {
   // Set up the green button.
   green_button_ = createButton(true, kGreenButtonText, kGreenButtonColor);
   green_button_->addTouchEventListener(
-      [this](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             // When the green button is clicked it logs an event with

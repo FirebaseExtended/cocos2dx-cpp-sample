@@ -33,7 +33,6 @@
 
 USING_NS_CC;
 
-
 /// Padding for the UI elements.
 static const float kUIElementPadding = 10.0;
 
@@ -134,7 +133,7 @@ bool FirebaseMessagingScene::init() {
 
   // Create the Firebase label.
   auto firebaseLabel =
-      Label::createWithTTF("Firebase-Messaging", "fonts/Marker Felt.ttf", 20);
+      Label::createWithTTF("Firebase Messaging", "fonts/Marker Felt.ttf", 20);
   nextYPosition =
       origin.y + visibleSize.height - firebaseLabel->getContentSize().height;
   firebaseLabel->setPosition(

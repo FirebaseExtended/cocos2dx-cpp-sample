@@ -293,7 +293,7 @@ bool FirebaseAdMobScene::init() {
   auto visibleSize = Director::getInstance()->getVisibleSize();
   cocos2d::Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-  // Intitialize Firebase-AdMob.
+  // Intitialize Firebase AdMob.
   CCLOG("Initializing the AdMob with Firebase API.");
   firebase::admob::Initialize(*firebase::App::GetInstance(), kAdMobAppID);
 
@@ -304,7 +304,7 @@ bool FirebaseAdMobScene::init() {
 
   // Create the Firebase label.
   auto firebaseLabel =
-      Label::createWithTTF("Firebase-AdMob", "fonts/Marker Felt.ttf", 20);
+      Label::createWithTTF("Firebase AdMob", "fonts/Marker Felt.ttf", 20);
   nextYPosition =
       origin.y + visibleSize.height - firebaseLabel->getContentSize().height;
   firebaseLabel->setPosition(

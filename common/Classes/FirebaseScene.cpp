@@ -130,9 +130,7 @@ void FirebaseScene::logMessage(std::string format, ...) {
 
   va_list list;
   va_start(list, format);
-  int stringLength = vsnprintf(buffer, kLineBufferSize, format.c_str(), list);
-  stringLength =
-      stringLength < kLineBufferSize ? stringLength : kLineBufferSize;
+  vsnprintf(buffer, kLineBufferSize, format.c_str(), list);
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
   __android_log_vprint(ANDROID_LOG_INFO, "FIREBASE-COCOS", format.c_str(),
                        list);

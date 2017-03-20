@@ -68,13 +68,13 @@ bool FirebaseInvitesScene::init() {
   auto visibleSize = Director::getInstance()->getVisibleSize();
   cocos2d::Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-  // Intitialize Firebase-Invites.
+  // Intitialize Firebase Invites.
   CCLOG("Initializing the Invites with Firebase API.");
   firebase::invites::Initialize(*firebase::App::GetInstance());
 
   // Create the Firebase label.
   auto firebaseLabel =
-      Label::createWithTTF("Firebase-Invites", "fonts/Marker Felt.ttf", 20);
+      Label::createWithTTF("Firebase Invites", "fonts/Marker Felt.ttf", 20);
   nextYPosition =
       origin.y + visibleSize.height - firebaseLabel->getContentSize().height;
   firebaseLabel->setPosition(
@@ -93,8 +93,7 @@ bool FirebaseInvitesScene::init() {
   // Set up the invite button.
   invite_button_ = createButton(true, kInviteButtonText);
   invite_button_->addTouchEventListener(
-      [this](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
-        cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(sender);
+      [this](Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType type) {
         switch (type) {
           case cocos2d::ui::Widget::TouchEventType::ENDED: {
             firebase::invites::Invite invite;

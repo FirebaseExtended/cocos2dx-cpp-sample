@@ -69,7 +69,7 @@ bool FirebaseRemoteConfigScene::init() {
 
   // Create the Firebase label.
   auto firebaseLabel = Label::createWithTTF(
-      "Firebase-RemoteConfig", "fonts/Marker Felt.ttf", 20);
+      "Firebase Remote Config", "fonts/Marker Felt.ttf", 20);
   nextYPosition =
       origin.y + visibleSize.height - firebaseLabel->getContentSize().height;
   firebaseLabel->setPosition(
