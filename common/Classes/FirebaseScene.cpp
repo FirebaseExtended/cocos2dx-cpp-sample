@@ -176,8 +176,9 @@ void FirebaseScene::logMessage(std::string format, ...) {
 WindowContext getWindowContext() {
   return (id)Director::getInstance()->getOpenGLView()->getEAGLView();
 }
-#endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 // Returns the Android Activity.
 WindowContext getWindowContext() { return JniHelper::getActivity(); }
+#else
+WindowContext getWindowContext() { return nullptr; }
 #endif

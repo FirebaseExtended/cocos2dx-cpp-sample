@@ -23,10 +23,10 @@
 		46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
 		46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
-		4A05661E1DB70C58009CE39C /* FirebaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A0566191DB70C58009CE39C /* FirebaseDatabaseScene.cpp */; };
+		4A05661E1DB70C58009CE39C /* FirebaseDatabaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A0566191DB70C58009CE39C /* FirebaseDatabaseScene.cpp */; };
 		4A05661F1DB70C58009CE39C /* FirebaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A05661C1DB70C58009CE39C /* FirebaseScene.cpp */; };
 		4A0566211DB70CDD009CE39C /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0566201DB70CDD009CE39C /* GameController.framework */; };
-		4A0566241DB70D15009CE39C /* firebase_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0566221DB70D15009CE39C /* firebase_database.framework */; };
+		4A0566241DB70D15009CE39C /* firebase_database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0566221DB70D15009CE39C /* firebase_database.framework */; };
 		4A0566251DB70D15009CE39C /* firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0566231DB70D15009CE39C /* firebase.framework */; };
 		4A16DCBB1DB7F58B003438A2 /* NormalButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A16DCB91DB7F58B003438A2 /* NormalButtonImage.png */; };
 		4A16DCBC1DB7F58B003438A2 /* SelectedButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A16DCBA1DB7F58B003438A2 /* SelectedButtonImage.png */; };
@@ -66,6 +66,12 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
+		983F33C21E81F06400083109 /* firebase_auth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983F33C11E81F06400083109 /* firebase_auth.framework */; };
+		984CE8671E81F58A00A6F405 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984CE8661E81F58A00A6F405 /* MediaPlayer.framework */; };
+		9853ECBE1E81C6D300B68892 /* FirebaseDatabaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A0566191DB70C58009CE39C /* FirebaseDatabaseScene.cpp */; };
+		9853ECBF1E81C6D300B68892 /* FirebaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A05661C1DB70C58009CE39C /* FirebaseScene.cpp */; };
+		9853ECC51E81C6E000B68892 /* firebase_database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9853ECC31E81C6E000B68892 /* firebase_database.framework */; };
+		9853ECC61E81C6E000B68892 /* firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9853ECC41E81C6E000B68892 /* firebase.framework */; };
 		98C5ECE51E7CA14E005EC76D /* firebase_auth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C5ECE41E7CA14E005EC76D /* firebase_auth.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -123,13 +129,13 @@
 		46880B7A19C43A67006E1F66 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4A0566191DB70C58009CE39C /* FirebaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FirebaseDatabaseScene.cpp; sourceTree = "<group>"; };
-		4A05661A1DB70C58009CE39C /* FirebaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseDatabaseScene.h; sourceTree = "<group>"; };
+		4A0566191DB70C58009CE39C /* FirebaseDatabaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FirebaseDatabaseScene.cpp; sourceTree = "<group>"; };
+		4A05661A1DB70C58009CE39C /* FirebaseDatabaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseDatabaseScene.h; sourceTree = "<group>"; };
 		4A05661B1DB70C58009CE39C /* FirebaseCocos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCocos.h; sourceTree = "<group>"; };
 		4A05661C1DB70C58009CE39C /* FirebaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FirebaseScene.cpp; sourceTree = "<group>"; };
 		4A05661D1DB70C58009CE39C /* FirebaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseScene.h; sourceTree = "<group>"; };
 		4A0566201DB70CDD009CE39C /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
-		4A0566221DB70D15009CE39C /* firebase_.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = firebase_database.framework; path = ../Libs/firebase_cpp_sdk/frameworks/ios/universal/firebase_database.framework; sourceTree = "<group>"; };
+		4A0566221DB70D15009CE39C /* firebase_database.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = firebase_database.framework; path = ../Libs/firebase_cpp_sdk/frameworks/ios/universal/firebase_database.framework; sourceTree = "<group>"; };
 		4A0566231DB70D15009CE39C /* firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = firebase.framework; path = ../Libs/firebase_cpp_sdk/frameworks/ios/universal/firebase.framework; sourceTree = "<group>"; };
 		4A16DCB91DB7F58B003438A2 /* NormalButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NormalButtonImage.png; sourceTree = "<group>"; };
 		4A16DCBA1DB7F58B003438A2 /* SelectedButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SelectedButtonImage.png; sourceTree = "<group>"; };
@@ -170,6 +176,10 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		983F33C11E81F06400083109 /* firebase_auth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = firebase_auth.framework; path = ../Libs/firebase_cpp_sdk/frameworks/darwin/firebase_auth.framework; sourceTree = "<group>"; };
+		984CE8661E81F58A00A6F405 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
+		9853ECC31E81C6E000B68892 /* firebase_database.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = firebase_database.framework; path = ../Libs/firebase_cpp_sdk/frameworks/darwin/firebase_database.framework; sourceTree = "<group>"; };
+		9853ECC41E81C6E000B68892 /* firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = firebase.framework; path = ../Libs/firebase_cpp_sdk/frameworks/darwin/firebase.framework; sourceTree = "<group>"; };
 		98C5ECE41E7CA14E005EC76D /* firebase_auth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = firebase_auth.framework; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -187,6 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				984CE8671E81F58A00A6F405 /* MediaPlayer.framework in Frameworks */,
 				4A0566211DB70CDD009CE39C /* GameController.framework in Frameworks */,
 				294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */,
 				ED545A7C1B68A1F400C3958E /* libiconv.dylib in Frameworks */,
@@ -196,7 +207,7 @@
 				1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */,
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				4A0566241DB70D15009CE39C /* firebase_.framework in Frameworks */,
+				4A0566241DB70D15009CE39C /* firebase_database.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
@@ -212,6 +223,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983F33C21E81F06400083109 /* firebase_auth.framework in Frameworks */,
+				9853ECC51E81C6E000B68892 /* firebase_database.framework in Frameworks */,
+				9853ECC61E81C6E000B68892 /* firebase.framework in Frameworks */,
 				ED545A7E1B68A1FA00C3958E /* libiconv.dylib in Frameworks */,
 				1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */,
 				5087E76717EB910900C73F5D /* libz.dylib in Frameworks */,
@@ -280,7 +294,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A0566221DB70D15009CE39C /* firebase_.framework */,
+				984CE8661E81F58A00A6F405 /* MediaPlayer.framework */,
+				983F33C11E81F06400083109 /* firebase_auth.framework */,
+				9853ECC31E81C6E000B68892 /* firebase_database.framework */,
+				9853ECC41E81C6E000B68892 /* firebase.framework */,
+				4A0566221DB70D15009CE39C /* firebase_database.framework */,
 				4A0566231DB70D15009CE39C /* firebase.framework */,
 				4A0566201DB70CDD009CE39C /* GameController.framework */,
 				98C5ECE41E7CA14E005EC76D /* firebase_auth.framework */,
@@ -328,8 +346,8 @@
 			children = (
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
-				4A0566191DB70C58009CE39C /* FirebaseScene.cpp */,
-				4A05661A1DB70C58009CE39C /* FirebaseScene.h */,
+				4A0566191DB70C58009CE39C /* FirebaseDatabaseScene.cpp */,
+				4A05661A1DB70C58009CE39C /* FirebaseDatabaseScene.h */,
 				4A05661B1DB70C58009CE39C /* FirebaseCocos.h */,
 				4A05661C1DB70C58009CE39C /* FirebaseScene.cpp */,
 				4A05661D1DB70C58009CE39C /* FirebaseScene.h */,
@@ -531,7 +549,7 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
-				4A05661E1DB70C58009CE39C /* FirebaseScene.cpp in Sources */,
+				4A05661E1DB70C58009CE39C /* FirebaseDatabaseScene.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				4A05661F1DB70C58009CE39C /* FirebaseScene.cpp in Sources */,
 			);
@@ -541,6 +559,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9853ECBE1E81C6D300B68892 /* FirebaseDatabaseScene.cpp in Sources */,
+				9853ECBF1E81C6D300B68892 /* FirebaseScene.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 			);
@@ -637,6 +657,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Libs/firebase_cpp_sdk/frameworks/darwin/";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -668,6 +689,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Libs/firebase_cpp_sdk/frameworks/darwin/";
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;

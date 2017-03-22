@@ -75,24 +75,25 @@ static int adViewPositionIndex = 0;
 // The AdMob app IDs.
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 const char* kAdMobAppID = "ca-app-pub-3940256099942544~3347511713";
-#endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 const char* kAdMobAppID = "ca-app-pub-3940256099942544~1458002511";
+#else
+const char* kAdMobAppID = "";
 #endif
 
 // These ad units are configured to always serve test ads.
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 const char* kAdViewAdUnit = "ca-app-pub-3940256099942544/6300978111";
 const char* kInterstitialAdUnit = "ca-app-pub-3940256099942544/1033173712";
-const char* kRewardedVideoAdUnit = "YOUR_AD_UNIT_ID";
+const char* kRewardedVideoAdUnit = "ca-app-pub-3940256099942544/2888167318";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 const char* kAdViewAdUnit = "ca-app-pub-3940256099942544/2934735716";
 const char* kInterstitialAdUnit = "ca-app-pub-3940256099942544/4411468910";
-const char* kRewardedVideoAdUnit = "YOUR_AD_UNIT_ID";
+const char* kRewardedVideoAdUnit = "ca-app-pub-3940256099942544/6386090517";
 #else
 const char* kAdViewAdUnit = "";
 const char* kInterstitialAdUnit = "";
-const char* kRewardedVideoAdUnit = "YOUR_AD_UNIT_ID";
+const char* kRewardedVideoAdUnit = "";
 #endif
 
 // The ad view's ad size.

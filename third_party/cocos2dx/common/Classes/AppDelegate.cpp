@@ -113,9 +113,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
   CCLOG("Initializing Firebase for Android.");
   firebase::App::Create(firebase::AppOptions(), JniHelper::getEnv(),
                         JniHelper::getActivity());
-#endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
   CCLOG("Initializing Firebase for iOS.");
+  firebase::App::Create(firebase::AppOptions());
+#else
+  CCLOG("Initializing Firebase for Desktop.");
+  CCLOG("Note: Functions in the Firebase C++ desktop API are stubs, and are "
+        "provided for convenience only.");
   firebase::App::Create(firebase::AppOptions());
 #endif
 
