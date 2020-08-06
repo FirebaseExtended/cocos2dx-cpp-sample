@@ -3,6 +3,13 @@ Firebase Cocos2d-x Samples
 
 iOS and Android cocos2d-x samples for the Firebase C++ SDK.
 
+## Status
+
+![Status: Archived](https://img.shields.io/badge/Status-Archived-red)
+
+This sample is no longer actively maintained and is left here for reference only.
+
+
 Introduction
 ------------
 
