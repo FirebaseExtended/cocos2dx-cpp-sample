@@ -51,7 +51,7 @@ ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 # The Firebase SDK download URL.
 FIREBASE_SDK_URL = "http://firebase.google.com/download/cpp"
 # The cocos2d-x GitHub release download URL.
-COCOS2DX_GITHUB_URL = "https://github.com/cocos2d/cocos2d-x/archive/cocos2d-x-3.14.1.zip"
+COCOS2DX_GITHUB_URL = "https://github.com/cocos2d/cocos2d-x/archive/cocos2d-x-3.17.zip"
 # The iOS project directory.
 IOS_PROJECT_DIR = os.path.join(ROOT_DIRECTORY, "sample_project/proj.ios_mac")
 # The iOS project.pbxproj file.
@@ -59,7 +59,7 @@ IOS_PROJECT_FILE = os.path.join(IOS_PROJECT_DIR,
                                 "HelloCpp.xcodeproj/project.pbxproj")
 # The Android project directory.
 ANDROID_PROJECT_DIR = os.path.join(ROOT_DIRECTORY,
-                                   "sample_project/proj.android-studio")
+                                   "sample_project/proj.android")
 # The Android.mk file.
 ANDROID_MAKEFILE = os.path.join(ANDROID_PROJECT_DIR, "app/jni/Android.mk")
 # The Libs directory for the cocos2d-x sample project. This is where the
